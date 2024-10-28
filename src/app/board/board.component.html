@@ -10,7 +10,8 @@
 
 <div *ngIf="showPopup" class="popup">
     <div class="popup-content">
-      <h2>Player {{ winner }} won the game!</h2>
+      <h2 *ngIf="winner">Player {{ winner }} won the game!</h2>
+      <h2 *ngIf="isTie">Game is a tie!</h2>
       <button (click)="closePopup()">Start New Game</button>
     </div>
   </div>

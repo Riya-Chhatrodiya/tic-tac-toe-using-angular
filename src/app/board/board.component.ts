@@ -11,12 +11,14 @@ export class BoardComponent implements OnInit {
   xIsNext: boolean;
   winner: string;
   showPopup: boolean = false;
+  isTie:boolean;
 
   newGame(){
     this.squares = Array(9).fill(null);
     this.winner = null;
     this.xIsNext = true;
     this.showPopup =false;
+    this.isTie = false;
   }
 
   constructor() { }
@@ -36,9 +38,12 @@ export class BoardComponent implements OnInit {
     }
 
     this.winner = this.calculateWinner();
-    if(this.winner){
-      this.showPopup =true;
+    if (!this.winner && !this.squares.includes(null)) {
+      this.isTie = true; 
     }
+
+    this.showPopup = !!this.winner || this.isTie;
+
   }
 
   calculateWinner(){
